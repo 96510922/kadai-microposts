@@ -13,6 +13,12 @@
           <% if current_user == micropost.user %>
               <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
+          
+           <% if current_user.already_favorite?(micropost) %>
+               <%= link_to 'いいね外す', micropost_favorites_path(micropost), local: true, method: :delete  %>
+           <%else%>
+               <%= link_to 'いいね', micropost_favorites_path(micropost),method: :post  %>
+           <%end%>
         </div>
       </div>
     </li>
